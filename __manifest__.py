@@ -9,7 +9,9 @@
     "depends": [
         "operating_unit",
         "account",
-        "web"
+        "web",
+        "sale",
+        "point_of_sale"
     ],
     "data": [
         "views/report_external_logo.xml",
@@ -18,3 +20,4 @@
     "installable": True,
     "auto_install": False,
 }
+

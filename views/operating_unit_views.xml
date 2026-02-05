@@ -30,5 +30,19 @@
                 </xpath> 
       </field>
     </record>
+
+    <!--agregado de vista en facturacion-->
+    <record id="view_move_form_inherit_operating_unit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit.operating.unit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="operating_unit_id" options="{'no_create': True}"/>
+                </xpath>
+
+            </field>
+        </record>
   </data>
 </odoo>
