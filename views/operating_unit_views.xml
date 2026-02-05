@@ -2,7 +2,7 @@
 <odoo>
   <data>
     <!-- Simple form view to allow uploading a report logo for an Operating Unit -->
-    <record id="view_operating_unit_form_report_logo" model="ir.ui.view">
+    <!--<record id="view_operating_unit_form_report_logo" model="ir.ui.view">
       <field name="name">operating.unit.form.report.logo</field>
       <field name="model">operating.unit</field>
       <field name="arch" type="xml">
@@ -17,6 +17,17 @@
             </group>
           </sheet>
         </form>
+      </field>
+    </record>-->
+
+    <record id="view_operating_unit_form_report_logo" model="ir.ui.view">
+      <field name="name">operating.unit.form.report.logo</field>
+      <field name="model">operating.unit</field>
+      <field name="inherit_id" ref="operating_unit.view_operating_unit_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="after">
+                    <field name="report_logo" widget="image" class="oe_avatar"/>
+                </xpath> 
       </field>
     </record>
   </data>
