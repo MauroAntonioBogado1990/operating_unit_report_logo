@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+    <!-- Inherit external layout used by many reports and show operating unit logo when present -->
+    <record id="operating_unit_report_logo_external_layout" model="ir.ui.view">
+      <field name="name">external.layout.inherit.operating.unit.logo</field>
+      <field name="model">ir.actions.report</field>
+      <field name="type">qweb</field>
+      <field name="inherit_id" ref="web.external_layout"/>
+      <field name="arch" type="xml">
+        <!-- Insert operating unit logo before existing company logo; keep company logo as fallback -->
+        <xpath expr="//img[contains(@t-att-src,'company.logo')]" position="before">
+          <t t-if="o and o.operating_unit_id and o.operating_unit_id.report_logo">
+            <img t-att-src="'data:image/png;base64,%s' % (o.operating_unit_id.report_logo)" class="img img-responsive"/>
+          </t>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

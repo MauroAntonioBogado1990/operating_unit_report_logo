@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- Simple form view to allow uploading a report logo for an Operating Unit -->
+    <record id="view_operating_unit_form_report_logo" model="ir.ui.view">
+      <field name="name">operating.unit.form.report.logo</field>
+      <field name="model">operating.unit</field>
+      <field name="arch" type="xml">
+        <form string="Operating Unit">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="company_id"/>
+            </group>
+            <group>
+              <field name="report_logo"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>
