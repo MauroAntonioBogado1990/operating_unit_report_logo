@@ -3,9 +3,9 @@ from odoo import models, fields
 
 class PosConfig(models.Model):
     _inherit = 'pos.config'
-    operating_unit_id = fields.Many2one('operating.unit', string='Unidad Operativa')
+    operating_unit_id = fields.Many2one('operating.unit', string='Unidad Operacional')
 
 
 class PosOrder(models.Model):
     _inherit = 'pos.order'
-    operating_unit_id = fields.Many2one('operating.unit', string='Unidad Operativa', readonly=True)
+    operating_unit_id = fields.Many2one('operating.unit', string='Unidad Operacional', readonly=True)
