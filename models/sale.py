@@ -4,7 +4,7 @@ from odoo import models, fields
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    operating_unit_id = fields.Many2one('operating.unit', string='Unidad Operativa')
+    operating_unit_id = fields.Many2one('operating.unit', string='Unidad Operacional')
 
     def _prepare_invoice(self):
         inv_vals = super(SaleOrder, self)._prepare_invoice()
