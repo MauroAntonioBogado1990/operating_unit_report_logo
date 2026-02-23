@@ -50,5 +50,18 @@
       </xpath>
     </template>
 
+    <!--agregado de reporte de pos-->
+    <!-- <template id="pos_receipt_inherit_logo" inherit_id="OrderReceipt">
+  <xpath expr="//div[@class='pos-receipt']//img" position="replace">
+    <t t-if="order.operating_unit_id and order.operating_unit_id.report_logo">
+      <img t-att-src="'data:image/png;base64,%s' % order.operating_unit_id.report_logo.decode('utf-8')" style="max-height: 80px;"/>
+    </t>
+    <t t-else="">
+      <img t-att-src="'data:image/png;base64,%s' % order.company_id.logo.decode('utf-8')" style="max-height: 80px;"/>
+    </t>
+  </xpath>
+</template> -->
+
+
   </data>
 </odoo>

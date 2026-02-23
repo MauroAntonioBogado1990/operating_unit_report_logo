@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+
+    <!-- Inherit the POS receipt template(s) and replace the logo with the operating unit logo when available -->
+    <template id="pos_receipt_logo_inherit_pos_receipt" inherit_id="point_of_sale.pos_receipt">
+      <xpath expr="//img" position="replace">
+        <!-- Prefer operating unit logo from the order -->
+        <t t-if="order and order.operating_unit_id and order.operating_unit_id.report_logo">
+          <img t-att-src="order.operating_unit_id.report_logo" style="max-height:80px;" alt="Logo"/>
+        </t>
+        <!-- Fallback: use operating unit logo exposed on POS config (frontend) -->
+        <t t-elif="pos and pos.config and pos.config.operating_unit_report_logo">
+          <img t-att-src="'data:image/png;base64,' + pos.config.operating_unit_report_logo" style="max-height:80px;" alt="Logo"/>
+        </t>
+        <!-- Next fallback: operating unit partner image on config -->
+        <t t-elif="pos and pos.config and pos.config.operating_unit_partner_image">
+          <img t-att-src="'data:image/png;base64,' + pos.config.operating_unit_partner_image" style="max-height:80px;" alt="Logo"/>
+        </t>
+        <!-- Final fallback: company logo -->
+        <t t-else="">
+          <img t-if="company and company.logo" t-att-src="image_data_uri(company.logo)" style="max-height:80px;" alt="Logo"/>
+        </t>
+      </xpath>
+    </template>
+
+    <!-- Some installations use different template ids for the POS ticket; cover common alternatives -->
+    <template id="pos_receipt_logo_inherit_pos_ticket" inherit_id="point_of_sale.pos_ticket" priority="16">
+      <xpath expr="//img" position="replace">
+        <t t-call="pos_receipt_logo_inherit_pos_receipt"/>
+      </xpath>
+    </template>
+
+    <template id="pos_receipt_logo_inherit_order_receipt" inherit_id="point_of_sale.OrderReceipt" priority="16">
+      <xpath expr="//img" position="replace">
+        <t t-call="pos_receipt_logo_inherit_pos_receipt"/>
+      </xpath>
+    </template>
+
+    <!-- include frontend JS to ensure POS loads operating_unit images and sets order field -->
+    <template id="assets_frontend" inherit_id="point_of_sale.assets">
+      <xpath expr="/" position="inside">
+        <script type="text/javascript" src="/operating_unit_report_logo/static/src/js/pos_operating_unit_logo.js"></script>
+      </xpath>
+    </template>
+
+  </data>
+</odoo>

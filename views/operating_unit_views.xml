@@ -44,5 +44,31 @@
 
             </field>
         </record>
+
+      <record id="view_move_form_inherit_operating_unit_pos_config" model="ir.ui.view">
+            <field name="name">pos.config.form.inherit.operating.unit</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//div[@id='title']" position="after">
+                    Unidad Operativa <field name="operating_unit_id" options="{'no_create': True}"/>
+                </xpath>
+
+            </field>
+        </record>  
+    <!-- Add operating unit selection to account.journal form -->
+    <record id="view_journal_form_inherit_operating_unit" model="ir.ui.view">
+      <field name="name">account.journal.form.inherit.operating.unit</field>
+      <field name="model">account.journal</field>
+      <field name="inherit_id" ref="account.view_account_journal_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="after">
+          <br/>Unidad Operativa <field name="operating_unit_id" options="{'no_create': True}"/>
+        </xpath>
+      </field>
+    </record>
+
   </data>
+
 </odoo>
